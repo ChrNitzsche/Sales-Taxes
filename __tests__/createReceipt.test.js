@@ -1,6 +1,6 @@
-const { createReceipt, shoppingBaskets } = require('../sales-taxes');
+const { createReceipt, shoppingBaskets } = require('../index');
 
-const falsePriceinBasket = [
+const falsePriceInBasket = [
     '1 imported bottle of perfume: 32.19',
     '1 bottle of perfume: 20.89f',
     '1 packet of headache pills: 9.75',
@@ -65,7 +65,7 @@ describe("create Receipt", () => {
     });
 
     it("Throw Error on Receipt #3", () => {
-        expect(() => createReceipt(falsePriceinBasket)).toThrow();
+        expect(() => createReceipt(falsePriceInBasket)).toThrow();
     });
 
     it("Receipt #3 with Spaces", () => {

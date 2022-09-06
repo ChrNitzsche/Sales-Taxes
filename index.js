@@ -4,7 +4,7 @@ const taxes = 0.1;
 const importTaxes = 0.05;
 
 const itemsOfNoTaxes = ['book', 'pill', 'chocolate'];
-let shoppingBaskets = [
+const shoppingBaskets = [
     [
         '1 book at 12.49',
         '1 music CD at 14.99',
@@ -77,13 +77,13 @@ const createReceipt = (basket = []) => {
     let receiptValue = 0;
     let receiptTaxes = 0;
 
-    basket.map((basketItem) => {
-
-        if ((basketItem.trim())) {
+    output = basket
+      .filter(basketItem => basketItem && basketItem.trim().length > 0 ? true : false)
+      .map((basketItem) => {
             let itemValue;
             let taxValue;
 
-            const itemSplitted = basketItem.split(' ');
+            const itemSplitted = basketItem.trim().split(' ');
             itemValue = itemSplitted[itemSplitted.length - 1] * 1; // get value of current Item
             if (isNaN(itemValue))
                 throw new InputError(`No price found >> "${basketItem}"`);
@@ -95,10 +95,10 @@ const createReceipt = (basket = []) => {
             receiptTaxes += taxValue;
 
             // Output items of basket
-            output = [...output, basketItem.split(' at ')[0] + ': ' + itemValue.toFixed(2)];
-        }
 
-    });
+            return basketItem.split(' at ')[0] + ': ' + itemValue.toFixed(2);
+        })
+    
 
     // Output Taxes on Receipt
     if (output.length === 0) {
@@ -117,7 +117,7 @@ const createReceipt = (basket = []) => {
 // main
 const printReceipt = (basket) => {
     let receipt = createReceipt(basket);
-    receipt.map(item => console.log(item));
+    receipt.forEach(item => console.log(item));
 }
 
 

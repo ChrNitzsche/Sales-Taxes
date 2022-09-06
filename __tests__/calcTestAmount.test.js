@@ -1,4 +1,4 @@
-const { calcTaxAmount, itemsOfNoTaxes } = require('../sales-taxes');
+const { calcTaxAmount, itemsOfNoTaxes } = require('../index');
 
 describe("calcTaxAmount", () => {
     it("empty or null Items", () => {

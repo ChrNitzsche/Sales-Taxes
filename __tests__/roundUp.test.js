@@ -1,4 +1,4 @@
-const { roundUp } = require('../sales-taxes');
+const { roundUp } = require('../index');
 
 describe("RoundUp to 0.05", () => {
     it("Test the 0 and null", () => {
